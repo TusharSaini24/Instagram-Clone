@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
 const profileRoutes = require("./routes/profileRoutes");
-
+const followerRoutes = require("./routes/followerRoutes");
 // db
 const db = require("./dbSetup/dbsetup");
 
@@ -15,6 +15,7 @@ app.use(express.json());
 // routes
 app.use("/api/v1", authRoutes);
 app.use("/api/v1", profileRoutes);
+app.use("/api/v1", followerRoutes);
 
 const PORT = process.env.PORT || 9000;
 

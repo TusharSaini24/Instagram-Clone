@@ -6,6 +6,7 @@ module.exports.userMiddleware = (req, res, next) => {
     const bearer = bearerHeader.split(" ");
     const bearerToken = bearer[1];
     const obj = jwt.decode(bearerToken);
+    req.user = obj;
     if (obj) {
       next();
     } else
