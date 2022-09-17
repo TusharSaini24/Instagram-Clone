@@ -39,7 +39,7 @@ module.exports.update = async (req, res) => {
 
     const results = await getQuery(insert_profile);
     results &&
-      res.status(201).json({
+      res.status(200).json({
         msg: "profile updated successfully",
         success: true,
         data: results,

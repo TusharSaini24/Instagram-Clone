@@ -1,9 +1,15 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+
+// routes
 const authRoutes = require("./routes/authRoutes");
 const profileRoutes = require("./routes/profileRoutes");
 const followerRoutes = require("./routes/followerRoutes");
+const postRoutes = require("./routes/postRoutes");
+const commentRoutes = require("./routes/commentRoutes");
+const likeRoutes = require("./routes/likeRoutes");
+
 // db
 const db = require("./dbSetup/dbsetup");
 
@@ -16,6 +22,9 @@ app.use(express.json());
 app.use("/api/v1", authRoutes);
 app.use("/api/v1", profileRoutes);
 app.use("/api/v1", followerRoutes);
+app.use("/api/v1", postRoutes);
+app.use("/api/v1", commentRoutes);
+app.use("/api/v1", likeRoutes);
 
 const PORT = process.env.PORT || 9000;
 

@@ -39,20 +39,23 @@ CREATE TABLE `instagram`.`post` (
   `post_id` int PRIMARY KEY AUTO_INCREMENT,
   `user_id` int,
   `post_photo` varchar(255),
-  `no_of_views` int
-);
-
-CREATE TABLE `instagram`.`comment_room` (
-  `comment_room_id` int PRIMARY KEY AUTO_INCREMENT,
-  `post_id` int
+  `caption` varchar(255),
+  `created_at` timestamp
 );
 
 CREATE TABLE `instagram`.`comments` (
   `comment_id` int PRIMARY KEY AUTO_INCREMENT,
-  `comment_room_id` int,
+  `post_id` int,
   `user_id` int,
   `text` varchar(255),
-  `isLiked` boolean
+  `created_at` timestamp
+);
+
+CREATE TABLE `instagram`.`likes` (
+  `like_id` int PRIMARY KEY AUTO_INCREMENT,
+  `post_id` int,
+  `user_id` int,
+  `isLiked` boolean DEFAULT false
 );
 
 CREATE TABLE `instagram`.`chat` (
@@ -77,11 +80,10 @@ ALTER TABLE `instagram`.`stories` ADD FOREIGN KEY (`user_id`) REFERENCES `instag
 
 ALTER TABLE `instagram`.`post` ADD FOREIGN KEY (`user_id`) REFERENCES `instagram`.`user` (`user_id`);
 
-ALTER TABLE `instagram`.`comment_room` ADD FOREIGN KEY (`post_id`) REFERENCES `instagram`.`post` (`post_id`);
+ALTER TABLE `instagram`.`comments` ADD FOREIGN KEY (`post_id`) REFERENCES `instagram`.`post` (`post_id`);
 
-ALTER TABLE `instagram`.`comments` ADD FOREIGN KEY (`comment_room_id`) REFERENCES `instagram`.`comment_room` (`comment_room_id`);
+ALTER TABLE `instagram`.`likes` ADD FOREIGN KEY (`post_id`) REFERENCES `instagram`.`post` (`post_id`);
 
 ALTER TABLE `instagram`.`chat` ADD FOREIGN KEY (`user_id`) REFERENCES `instagram`.`user` (`user_id`);
 
 ALTER TABLE `instagram`.`messages` ADD FOREIGN KEY (`chat_id`) REFERENCES `instagram`.`chat` (`chat_id`);
-
