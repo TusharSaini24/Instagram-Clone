@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Register = () => {
+  const [state, setState] = useState({
+    fullname: "",
+    username: "",
+    email: "",
+    password: "",
+  });
+  const handleState = (e) => {
+    setState({ ...state, [e.target.name]: e.target.value });
+  };
+  const RegisterFunction = (e) => {
+    e.preventDefault();
+    console.log(state);
+  };
   return (
     <div className="h-screen pt-10 overflow-scroll bg-gray-50 flex flex-col justify-start items-center ">
       <div className="bg-white border border-gray-300 w-80 py-8 flex items-center flex-col mb-3">
@@ -33,6 +46,9 @@ const Register = () => {
             id="email"
             placeholder="Email"
             type="text"
+            onChange={handleState}
+            name="email"
+            value={state.email}
           />
           <input
             autofocus
@@ -40,6 +56,9 @@ const Register = () => {
             id="password"
             placeholder="Full Name"
             type="text"
+            onChange={handleState}
+            name="fullname"
+            value={state.fullname}
           />
           <input
             autofocus
@@ -47,6 +66,9 @@ const Register = () => {
             id="password"
             placeholder="Username"
             type="text"
+            onChange={handleState}
+            name="username"
+            value={state.username}
           />
           <input
             autofocus
@@ -54,6 +76,9 @@ const Register = () => {
             id="password"
             placeholder="Password"
             type="password"
+            onChange={handleState}
+            name="password"
+            value={state.password}
           />
           <div>
             <p className="text-[#8e8e8e] text-[12px] leading-4  mr-10 mb-10  mt-[10px] w-full text-center">
@@ -101,9 +126,12 @@ const Register = () => {
               </a>
             </p>
           </div>
-          <a className=" text-sm text-center bg-blue-300 text-white py-1 rounded font-medium">
+          <button
+            onClick={RegisterFunction}
+            className=" text-sm text-center bg-blue-300 text-white py-1 rounded font-medium"
+          >
             Sign up
-          </a>
+          </button>
         </form>
       </div>
       <div className="bg-white border border-gray-300 text-center w-80 py-4">

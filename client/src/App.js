@@ -4,8 +4,8 @@ import Register from "./pages/Register";
 function App() {
   return (
     <div className="bg-background">
-      {/* <Login /> */}
-      <Register />
+      <Login />
+      {/* <Register /> */}
     </div>
   );
 }
