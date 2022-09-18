@@ -1,19 +1,28 @@
 import React, { useState } from "react";
-
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/actions/userAction";
 const Login = () => {
   const [state, setState] = useState({
     email: "",
     password: "",
   });
+  const dispatch = useDispatch();
+
   const handleState = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
   const loginFunction = (e) => {
     e.preventDefault();
     console.log(state);
+    dispatch(login(state.email, state.password));
+    setState({
+      email: "",
+      password: "",
+    });
   };
   return (
-    <div className="h-screen bg-gray-50 flex flex-col justify-center items-center">
+    <div className="h-screen bg-gray-50 overflow-scroll flex flex-col justify-center items-center">
       <div className="bg-white border border-gray-300 w-80 py-8 flex items-center flex-col mb-3">
         <h1 className="bg-no-repeat instagram-logo" />
         <form className="mt-8 w-64 flex flex-col">
@@ -57,13 +66,21 @@ const Login = () => {
             Log in with Facebook
           </span>
         </button>
-        <a className="text-xs text-blue-900 mt-4 cursor-pointer -mb-4">
+        <Link
+          to="/forget-password"
+          className="text-xs text-blue-900 mt-4 cursor-pointer -mb-4"
+        >
           Forgot password?
-        </a>
+        </Link>
       </div>
-      <div className="bg-white border border-gray-300 text-center w-80 py-4">
+      <div className="bg-white border  border-gray-300 text-center w-80 py-4">
         <span className="text-sm">Don't have an account?</span>
-        <button className="text-blue-500 text-sm font-semibold">Sign up</button>
+        <Link
+          to="/register"
+          className="ml-1 text-blue-500 text-sm font-semibold"
+        >
+          Sign up
+        </Link>
       </div>
       <div className="mt-3 text-center">
         <span className="text-xs">Get the app</span>

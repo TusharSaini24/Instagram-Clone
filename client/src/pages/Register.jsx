@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { register } from "../redux/actions/userAction";
 const Register = () => {
   const [state, setState] = useState({
     fullname: "",
@@ -7,12 +9,17 @@ const Register = () => {
     email: "",
     password: "",
   });
+  const dispatch = useDispatch();
   const handleState = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
   const RegisterFunction = (e) => {
     e.preventDefault();
     console.log(state);
+    dispatch(
+      register(state.email, state.fullname, state.username, state.password)
+    );
+    setState({ fullname: "", username: "", email: "", password: "" });
   };
   return (
     <div className="h-screen pt-10 overflow-scroll bg-gray-50 flex flex-col justify-start items-center ">
@@ -136,7 +143,9 @@ const Register = () => {
       </div>
       <div className="bg-white border border-gray-300 text-center w-80 py-4">
         <span className="text-sm">Don't have an account?</span>
-        <a className="text-blue-500 text-sm font-semibold">Sign up</a>
+        <Link to="/" className="text-blue-500 ml-1 text-sm font-semibold">
+          Sign in
+        </Link>
       </div>
       <div className="mt-3 text-center">
         <span className="text-xs">Get the app</span>
