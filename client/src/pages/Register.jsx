@@ -1,25 +1,27 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { register } from "../redux/actions/userAction";
+import { Link, useNavigate } from "react-router-dom";
+
 const Register = () => {
+  const navigate = useNavigate();
+
   const [state, setState] = useState({
     fullname: "",
     username: "",
     email: "",
     password: "",
   });
-  const dispatch = useDispatch();
   const handleState = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
   const RegisterFunction = (e) => {
+    // validation
     e.preventDefault();
     console.log(state);
-    dispatch(
-      register(state.email, state.fullname, state.username, state.password)
-    );
+
     setState({ fullname: "", username: "", email: "", password: "" });
+    navigate("/dob", {
+      state: state,
+    });
   };
   return (
     <div className="h-screen pt-10 overflow-scroll bg-gray-50 flex flex-col justify-start items-center ">
@@ -27,7 +29,7 @@ const Register = () => {
         <h1 className="bg-no-repeat instagram-logo" />
         <h2
           className="text-center text-[17px]
-         mt-4 mr-10 ml-10 mb-[10px] text-[#8e8e8e] font-bold leading-5"
+         mt-4 mr-10 ml-10 mb-[10px] text-[#8e8e8e] font-normal leading-5"
         >
           Sign up to see photos and videos from your friends.
         </h2>

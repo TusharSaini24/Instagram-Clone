@@ -6,6 +6,9 @@ import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
+  USER_OTP_REQUEST,
+  USER_OTP_SUCCESS,
+  USER_OTP_FAIL,
 } from "../constants/userContants";
 
 export const userLoginReducer = (state = {}, action) => {
@@ -29,6 +32,20 @@ export const userRegisterReducer = (state = {}, action) => {
     case USER_REGISTER_SUCCESS:
       return { loading: false, userInfo: action.payload };
     case USER_REGISTER_FAIL:
+      return { loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
+
+export const userSendOtpReducer = (state = {}, action) => {
+  switch (action.type) {
+    case USER_OTP_REQUEST:
+      return { loading: true };
+    case USER_OTP_SUCCESS:
+      return { loading: false, userOtpCode: action.payload };
+    case USER_OTP_FAIL:
       return { loading: false, error: action.payload };
 
     default:
