@@ -3,6 +3,8 @@ import Register from "./pages/Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dob from "./pages/Dob";
 import EmailVerify from "./pages/EmailVerify";
+import Home from "./pages/Home";
+
 function App() {
   return (
     <div className="bg-background">
@@ -12,6 +14,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/dob" element={<Dob />} />
           <Route path="/email-verify" element={<EmailVerify />} />
+          <Route path="/home" element={<Home />} />
         </Routes>
       </BrowserRouter>
     </div>
