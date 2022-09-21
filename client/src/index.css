@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .btn {
+    @apply h-7 text-4xl 
+      hover:scale-125
+      cursor-pointer
+      transition-all
+      duration-150
+      ease-out;
+  }
+  .navBtn {
+    @apply hidden h-7 text-4xl 
+    md:inline-flex 
+    cursor-pointer
+    hover:scale-125
+    transition-all 
+    duration-150
+    ease-out;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
