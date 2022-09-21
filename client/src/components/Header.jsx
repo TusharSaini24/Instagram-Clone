@@ -1,31 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { MdHomeFilled } from "react-icons/md";
 import { RiMessengerLine } from "react-icons/ri";
 import { FaRegCompass, FaRegHeart } from "react-icons/fa";
 import { AiOutlineMenu } from "react-icons/ai";
 import { FiPlusSquare, FiSearch } from "react-icons/fi";
 import tushar from "../assets/Tushar.jpeg";
-import instagramLogo from "../assets/instagramLogo.png";
+import { Link } from "react-router-dom";
+
 const Header = () => {
+  const [show, setShow] = useState(false);
   return (
-    <div className="shadow-sm border-b bg-white p-2 sticky top-0 z-50">
+    <div className="shadow-sm border-b bg-white p-2 sticky top-0 z-50 ">
       <div className="flex justify-between bg-white max-w-6xl mx-5  lg:mx-auto">
         {/*Left*/}
-        <div className="relative hidden lg:inline-grid w-24 mt-2 cursor-pointer">
-          <img
-            src="https://links.papareact.com/ocw"
-            layout="fill"
-            objectFit="contain"
-          />
-        </div>
-
-        <div className="relative w-10 lg:hidden flex-shrink-0 mt-2 cursor-pointer">
-          <img
-            src="https://links.papareact.com/jjm"
-            layout="fill"
-            objectFit="contain"
-          />
-        </div>
+        <Link to="/home">
+          <div className="relative hidden lg:inline-grid w-24 mt-2 cursor-pointer">
+            <img
+              src="https://links.papareact.com/ocw"
+              layout="fill"
+              objectFit="contain"
+            />
+          </div>
+        </Link>
+        <Link to="/home">
+          <div className="relative w-10 lg:hidden flex-shrink-0 mt-2 cursor-pointer">
+            <img
+              src="https://links.papareact.com/jjm"
+              layout="fill"
+              objectFit="contain"
+            />
+          </div>
+        </Link>
 
         {/*Middle*/}
 
@@ -55,15 +60,20 @@ const Header = () => {
               </div>
             </div>
 
-            <FiPlusSquare className="navBtn" />
-            <FaRegCompass className="navBtn" />
+            <FiPlusSquare onClick={() => setShow(true)} className="navBtn" />
+            <Link to="/explore">
+              <FaRegCompass className="navBtn" />
+            </Link>
             <FaRegHeart className="navBtn" />
 
-            <img
-              src={tushar}
-              alt="profile pic"
-              className="h-7 w-7 rounded-full cursor-pointer"
-            />
+            <Link to="/profile">
+              {" "}
+              <img
+                src={tushar}
+                alt="profile pic"
+                className="h-7 w-7 rounded-full cursor-pointer"
+              />
+            </Link>
           </>
         </div>
       </div>
